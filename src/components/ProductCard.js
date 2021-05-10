@@ -11,10 +11,13 @@ import { connect } from 'react-redux';
 import { titleFontStyle, priceFontStyle, hsnFontStyle, useStyles } from '../styles/product-card-style'
 import DeleteProduct from './DeleteProduct';
 import UpdateProduct from './EditProduct';
+import ProductInfo from './ProductDetail';
 
 
 const ProductCard = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [showInfo, setShowInfo] = React.useState(false);
+
   const [productData, setProductData] = React.useState([{}]);
   const openMenu = Boolean(anchorEl);
   const classes = useStyles();
@@ -47,19 +50,21 @@ const ProductCard = (props) => {
     e.preventDefault();   
 }
 
-  return (  
-    <Card className={classes.root}>
+  return ( 
+    <div> 
+    <Card className={classes.root} >
       <CardActionArea>
         <CardMedia
           component="img"
           alt="Product"
           height="150"
           width="390"
-          image="https://picsum.photos/536/354"
+          image={productData.imageUrl}
           title="Product"
+          onClick={()=>setShowInfo(true)}
         />
         <div className={classes.myComponent}>
-          <CardContent >
+          <CardContent>
             <Grid container style={{'marginBottom':'10px'}}>
               <Grid item xs={12} sm={6}>
                 <Typography style={titleFontStyle}>
@@ -75,7 +80,7 @@ const ProductCard = (props) => {
             <Grid container>
               <Grid item xs={12} sm={6}>
                 <Typography component="p" style={hsnFontStyle}>
-                  HSN Code : 123456
+                  Category : {productData.category}
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -90,6 +95,11 @@ const ProductCard = (props) => {
                   open={openMenu}
                   onClose={handleMenuClose}
                   style={{'padding':'0px'}}
+                  PaperProps={{  
+                    style: {  
+                      width: 200,  
+                    },  
+                 }} 
                 >
                   <UpdateProduct
                     formData={productData}
@@ -106,7 +116,12 @@ const ProductCard = (props) => {
           </CardContent>
         </div>
       </CardActionArea>
-    </Card>  
+    </Card> 
+    <ProductInfo
+      showInfo={showInfo}
+      productData={productData}
+    /> 
+    </div>
   );
 }
 

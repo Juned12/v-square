@@ -1,23 +1,17 @@
 import React from 'react';
+import { Dialog, DialogActions, DialogContent, DialogTitle,
+        IconButton, Avatar, Grid, withStyles 
+} from '@material-ui/core';
 import ProductCard from './ProductCard';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import ProductForm from './ProductForm';
 import { connect } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
-import { withStyles } from "@material-ui/core/styles";
 import ActionBar from './ProductActionBar';
 import {useStyles} from '../styles/product-list'
-import { DialogActions } from '@material-ui/core';
-
-
-
+import CloseIcon from '@material-ui/icons/Close';
 
 class ProductList extends React.Component {
     
     constructor(props) {
-        console.log('propss',props)
         super(props);
         this.state = {
             open: false,
@@ -33,15 +27,12 @@ class ProductList extends React.Component {
                 this.setState({productList:this.props.prodList});
           }
     }
-
-
     handleClickOpen = () => {
         this.setState({open:true});
     };
     
     handleClose = () => {
         this.setState({open:false});
-
     };
     handleSubmit = (e, data) => {
         const result = Math.random().toString(36).substring(2,7);
@@ -51,13 +42,11 @@ class ProductList extends React.Component {
             data
         });
         this.setState({open:false});
-        e.preventDefault();
-        
+        e.preventDefault();  
     }
     onSearchChange = event => {
         this.setState({ searchField: event.target.value });
       };
-
     render() {
         const { classes } = this.props;
         const { productList, searchField } = this.state;
@@ -72,15 +61,19 @@ class ProductList extends React.Component {
                     onSearchChange={this.onSearchChange}
                     productCount={productList.length}
                     />    
-                <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Add New Product</DialogTitle>
+                <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title" scroll={'body'}>
+                <DialogTitle className={classes.dialogTitle} onClose={this.handleClose}>
+                    <IconButton aria-label="close" className={classes.closeButton} onClick={this.handleClose}>
+                        <CloseIcon />
+                    </IconButton>
+                    <Avatar className={classes.avtarButton}>
+                    </Avatar>
+                    <span className={classes.title}>Add Product</span>
+                    
+                </DialogTitle>
                     <DialogContent>
                         <ProductForm
-                            formData={{
-                                id: "",
-                                name:"",
-                                price:""
-                            }}
+                            formData={{}}
                             handleSubmit={this.handleSubmit}
                         />
                     </DialogContent>
@@ -108,11 +101,9 @@ class ProductList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log('map state',state)
     return {
         prodList: state
     }
 }
 
 export default connect(mapStateToProps)(withStyles(useStyles)(ProductList));
-

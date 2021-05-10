@@ -5,6 +5,8 @@ export const useStyles = makeStyles({
   root: {
     maxWidth: 258,
     maxHeight:236.5,
+    minWidth: 258,
+    minHeight:236.5,
   },
   myComponent: {
     "& .MuiSvgIcon-root": {

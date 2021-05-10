@@ -1,32 +1,41 @@
 import React from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import ConfirmDelete from './ConfirmDelete';
 
 
-const DeleteProduct = (props ) => {
-    
-    function confirmDeleteEmployee(e) {
-        props.handleMenuClose()
-        confirmAlert({
-          title: 'Confirm to Delete',
-          message: 'Are you sure ?.',
-          buttons: [
-            {
-              label: 'Yes',
-              onClick: () => props.deleteProdRecord(e)
-            },
-            {
-              label: 'No',
-            }
-          ]
-        });
-      }
+class DeleteProduct extends React.Component {
+  constructor(props) {
+
+  super(props);
+    this.state = {
+      openDialog: false
+    }
+  }
+
+  confirmDeleteEmployee = () => {
+    this.setState({openDialog:true})
+    this.props.handleMenuClose()
+
+  }
+  handleClose = () => {
+    this.setState({openDialog:false})
+
+  }
+  render() {
+    const { classes } = this.props;
     return(
-        <MenuItem onClick={confirmDeleteEmployee}>
-        Delete
+      <div>
+        <MenuItem onClick={this.confirmDeleteEmployee}>
+         Delete
         </MenuItem>
+          <ConfirmDelete 
+            openDialog={this.state.openDialog}
+            deleteProdRecord ={this.props.deleteProdRecord}
+            handleClose={this.handleClose}
+          />         
+      </div>
     )
+}
 }
 
 export default DeleteProduct;

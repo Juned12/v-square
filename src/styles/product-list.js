@@ -29,6 +29,26 @@ export const useStyles = theme => ({
     control: {
       padding: theme.spacing(2),
     },
+    dialogTitle: {
+        padding: '45px 24px'
+    },
+    closeButton: {
+      position: 'absolute',
+      right: theme.spacing(1),
+      top: theme.spacing(1),
+      color: theme.palette.grey[500],
+    },
+    avtarButton: {
+      position: 'absolute',
+      right: theme.spacing(35),
+      top: theme.spacing(2),
+      color: theme.palette.grey[500],
+    },
+    title: {
+      position: 'absolute',
+      right: theme.spacing(31),
+      top: theme.spacing(8)
+    },
   });
 
   

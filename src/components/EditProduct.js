@@ -1,18 +1,24 @@
 import React from 'react';
+import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton, makeStyles } from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import ProductForm from './ProductForm';
-import { DialogActions } from '@material-ui/core';
+import ConfirmUpdate from './ConfirmUpdate';
+import CloseIcon from '@material-ui/icons/Close';
 
+const useStyles = makeStyles({
 
+  closeButton: {
+    position: 'absolute',
+    right: 8,
+    top: 8,
+    color: 'grey',
+  },
+});
 
 const UpdateProduct = (props ) => {
-
+    const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    const [openConfirmationDialog, setOpenConfirmationDialog] = React.useState(false);
     const [data, setData] = React.useState(props.formData);
 
     const openDialog = (e) => {
@@ -21,33 +27,33 @@ const UpdateProduct = (props ) => {
     const closeDialog = (e) => {
         setOpen(false)
     }
+    const closeConfirmationDialog = (e) => {
+      setOpenConfirmationDialog(false)
+    }
+    const handleSubmit = (e) => {
+      props.handleSubmit(e,data)
+      setOpen(false)
+      setOpenConfirmationDialog(false)
+    } 
     function confirmProductUpdate(e,data) {
         setData(data)
         e.preventDefault()
-        closeDialog()
         props.handleMenuClose()
-        confirmAlert({
-          title: 'Confirm to Update',
-          message: 'Are you sure ?.',
-          buttons: [
-            {
-              label: 'Yes',
-              onClick: () => props.handleSubmit(e,data)
-            },
-            {
-              label: 'No',
-              onClick: () => openDialog()
-            }
-          ]
-        });
+        setOpenConfirmationDialog(true)
       }
     return(
         <div>
             <MenuItem onClick={openDialog}>
                 Edit
             </MenuItem>
-            <Dialog open={open} onClose={closeDialog} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Edit Product</DialogTitle>
+            <Dialog open={open} onClose={closeDialog} aria-labelledby="form-dialog-title" scroll={'body'}>
+            
+                <DialogTitle id="form-dialog-title">
+                  Edit Product
+                  <IconButton  className={classes.closeButton} onClick={closeDialog}>
+                    <CloseIcon />
+                  </IconButton>
+                </DialogTitle>
                 <DialogContent>
                     <ProductForm
                         formData={data}
@@ -56,6 +62,11 @@ const UpdateProduct = (props ) => {
                 </DialogContent>
                 <DialogActions></DialogActions>
             </Dialog>
+            <ConfirmUpdate 
+              openDialog={openConfirmationDialog}
+              updateProdRecord ={handleSubmit}
+              handleClose={closeConfirmationDialog}
+            />
         </div>
     )
 }

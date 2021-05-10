@@ -16,7 +16,6 @@ import {useStyles, fontStyle, rectStyle} from '../styles/side-bar'
 export default function ClippedDrawer(props) {
   const classes = useStyles();
   
-  
   return (
     <div className={classes.root}>
       <CssBaseline />

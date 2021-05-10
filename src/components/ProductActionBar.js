@@ -1,9 +1,13 @@
 import React from 'react';
+import clsx from 'clsx';
 import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import {buttonStyle , productCountStyle} from '../styles/product-list'
-import TextField from '@material-ui/core/TextField';
+import SearchIcon from '@material-ui/icons/Search';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import { makeStyles } from '@material-ui/core/styles';
+import FormControl from '@material-ui/core/FormControl';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,14 +25,22 @@ const useStyles = makeStyles((theme) => ({
             position: 'relative',
             borderRadius: '4px',
             height: '40px',
-            width: '425px'
+            width: '425px',
+            margin: '-5px'
         },
-        "& .MuiGrid-spacing-xs-1 > .MuiGrid-item" : {
-            display: 'flex'
-        }
-      }
-    
+        
+      },
+    margin: {
+        margin: theme.spacing(1),
+      },
+    withoutLabel: {
+        marginTop: theme.spacing(3),
+    },
+    textField: {
+        width: '25ch',
+    },
   }));
+
 
 const ActionBar = props => {
     const classes = useStyles();
@@ -44,14 +56,19 @@ const ActionBar = props => {
                 </Grid>
                 <Grid container item xs={6}>
                     <div className={classes.myComponent}>
-                        <TextField 
-                            id="outlined-search" 
-                            label="Search by product name" 
-                            type="search" 
-                            variant="outlined"
+                    <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
+                        <OutlinedInput
+                            id="outlined-adornment-weight"
+                            endAdornment={<InputAdornment position="end"><SearchIcon style={{color:"#E8EAED"}} /></InputAdornment>}
+                            placeholder="Search by product name"
+                            aria-describedby="outlined-weight-helper-text"
+                            inputProps={{
+                            'aria-label': 'weight',
+                            }}
+                            labelWidth={0}
                             onChange={props.onSearchChange}
-                            style={searchField}
-                            /> 
+                        />
+                    </FormControl>
                     </div>
                 </Grid>
                 <Grid container item xs={3} justify="flex-end">

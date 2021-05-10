@@ -1,9 +1,14 @@
 
 const initState = [
     {
+        "id":"qwer1",
         "name":"Prod 1",
+        "description": "Desc",
         "price": 1200,
-        "id":"qwer1"
+        "dop": "2017-05-24",
+        "category":"one",
+        "quantity":"some",
+        "imageUrl":"https://picsum.photos/536/354"
     },
    
 ]
