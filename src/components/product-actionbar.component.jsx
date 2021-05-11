@@ -21,15 +21,24 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: 10
     },
     myComponent: {
+        
         "& .MuiOutlinedInput-root": {
+            [theme.breakpoints.up('xs')]: {
+                position: 'relative',
+                borderRadius: '4px',
+                height: '40px',
+                width: '255px',
+                margin: '-5px'
+            },
+            [theme.breakpoints.up('sm')]: {
             position: 'relative',
             borderRadius: '4px',
             height: '40px',
             width: '425px',
             margin: '-5px'
-        },
-        
-      },
+            }
+        }
+    },
     margin: {
         margin: theme.spacing(1),
       },
@@ -50,11 +59,11 @@ const ActionBar = props => {
 
     return (
         <div className={classes.paper}>
-            <Grid container className={classes.root} item xs={12}>
-                <Grid item xs={3}>
+            <Grid container className={classes.root}>
+                <Grid item xs={12} sm={12} md={6} lg={2}>
                     <p style={productCountStyle}>All Product ({props.productCount})</p> 
                 </Grid>
-                <Grid container item xs={6}>
+                <Grid item xs={12} sm={12} md={6} lg={4}>
                     <div className={classes.myComponent}>
                     <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                         <OutlinedInput
@@ -71,7 +80,7 @@ const ActionBar = props => {
                     </FormControl>
                     </div>
                 </Grid>
-                <Grid container item xs={3} justify="flex-end">
+                <Grid item xs={12} sm={12} md={6} lg={2} style={{marginLeft:'auto'}}>
                     <Button variant="contained" style={buttonStyle} onClick={props.handleClick}>
                         Add Product
                     </Button>

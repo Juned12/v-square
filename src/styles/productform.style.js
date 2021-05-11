@@ -25,10 +25,16 @@ export const useStyles = makeStyles((theme) => ({
       justifyContent: 'center',
       alignItems: 'center',
         "& .MuiOutlinedInput-root": {
+          [theme.breakpoints.up('xs')]: {
             borderRadius: '4px',
             height: '40px',
-            width: '250px',
-            
+            width: '230px'
+        },
+          [theme.breakpoints.up('sm')]: {
+          borderRadius: '4px',
+          height: '40px',
+          width: '250px'
+          },   
         },
         "& .MuiInputLabel-root": {
           paddingBottom: '2px'

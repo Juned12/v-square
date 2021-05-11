@@ -1,9 +1,8 @@
 export const buttonStyle = {
-    backgroundColor: "#0098DA",
+    background: "#0098DA",
     color: "#FFF",
     font: "Rubik",
     size: "14px",
-    float: "right",
     height: "40px",
     width: "200px"
 }

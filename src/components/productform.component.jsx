@@ -83,8 +83,8 @@ const ProductForm = (props ) => {
     return(
       <div className={classes.myComponent}>
         <form onSubmit={e => onSubmit(e)}>
-          <Grid container style={{padding:60}}>
-            <Grid container direction="column" item xs={1} md={3} lg={4} sm={2} spacing={2} style={{maxWidth:"100%"}}>
+          <Grid container>
+            <Grid container direction="column" item xs={12} md={6} lg={4} sm={12} spacing={2} style={{maxWidth:"100%"}}>
               <Grid item xs>
                 <InputLabel htmlFor="name">Name</InputLabel>
                 <TextField
@@ -177,25 +177,13 @@ const ProductForm = (props ) => {
                   </MenuItem>
                 </TextField>
               </Grid>
-              <Grid item xs style={{paddingLeft:33}}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  className={classes.submitButton}
-                  style={{backgroundColor: '#0098DA'}}
-                >
-                  Save
-                </Button>
-              </Grid>
+              
             </Grid>
-            <Grid container direction="column" item xs={4} style={{paddingLeft:10}} >
+            <Grid container direction="column" item xs={12} md={6} lg={4} sm={12} style={{paddingLeft:10}} >
               <Grid
                 item
                 container
                 direction="column"
-                alignItems="flex-end"
-                justify="flex-start"
               >
                 <input
                   accept="image/*"
@@ -218,6 +206,18 @@ const ProductForm = (props ) => {
                 </label>
               </Grid>
             </Grid>
+            <Grid item xs style={{paddingTop:10}}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.submitButton}
+                style={{backgroundColor: '#0098DA'}}
+              >
+                Save
+              </Button>
+          </Grid>
+          
           </Grid>
         </form>
       </div>

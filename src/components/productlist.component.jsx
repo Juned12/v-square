@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle,
-        IconButton, Avatar, Grid, withStyles 
+        IconButton, Grid, withStyles, Typography
 } from '@material-ui/core';
 import ProductCard from './product-card.component';
 import ProductForm from './productform.component';
@@ -70,14 +70,12 @@ class ProductList extends React.Component {
                     onSearchChange={this.onSearchChange}
                     productCount={productList.length}
                     />    
-                <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title" scroll={'body'}>
+                <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title" scroll={'body'} >
                 <DialogTitle className={classes.dialogTitle} onClose={this.handleClose}>
+                    <Typography variant="h6" align="center">Add Product</Typography>
                     <IconButton aria-label="close" className={classes.closeButton} onClick={this.handleClose}>
                         <CloseIcon />
                     </IconButton>
-                    <Avatar className={classes.avtarButton}>
-                    </Avatar>
-                    <span className={classes.title}>Add Product</span>
                     
                 </DialogTitle>
                     <DialogContent>

@@ -1,11 +1,5 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Menu from '@material-ui/core/Menu';
+import { Grid, Typography, CardMedia, CardContent, CardActionArea, Card, Menu } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { connect } from 'react-redux';
 import { titleFontStyle, priceFontStyle, hsnFontStyle, useStyles } from '../styles/product-card.style'
@@ -69,24 +63,24 @@ const closeInfo = () => {
         <div className={classes.myComponent}>
           <CardContent>
             <Grid container style={{'marginBottom':'10px'}}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={6} sm={6}>
                 <Typography style={titleFontStyle}>
                   {productData.name}
                 </Typography>
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={6} sm={6}>
                 <Typography style={priceFontStyle}>
                   Rs. {productData.price}
                 </Typography>
               </Grid>
             </Grid>
             <Grid container>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={6} sm={6}>
                 <Typography component="p" style={hsnFontStyle}>
                   Category : {productData.category}
                 </Typography>
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={6} sm={6}>
                 <MoreVertIcon
                   aria-label="more"
                   aria-haspopup="true"
