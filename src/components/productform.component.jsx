@@ -29,7 +29,17 @@ const ProductForm = (props ) => {
   }, [props])
 
     const { name, description, quantity, price, dop, category } = props.formData;
-    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+    const onChange = e => {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+      onDescriptionChange(e)
+    }
+    const onDescriptionChange = e => {
+      if(e.target.value.length>10) {
+        setErrors({'description':'Only 800 Character allowed'})
+      } else {
+        setErrors({})
+      }
+    }
     const onSubmit = e => {
       const errors = {}
       var format = /[!@#$%^&*()+\=\[\]{};':"\\|,.<>\/?]+/;
