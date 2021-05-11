@@ -49,6 +49,9 @@ const ProductCard = (props) => {
     });
     e.preventDefault();   
 }
+const closeInfo = () => {
+  setShowInfo(false);
+};
 
   return ( 
     <div> 
@@ -120,6 +123,7 @@ const ProductCard = (props) => {
     <ProductInfo
       showInfo={showInfo}
       productData={productData}
+      closeInfo={closeInfo}
     /> 
     </div>
   );
