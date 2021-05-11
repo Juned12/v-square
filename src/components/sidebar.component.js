@@ -7,10 +7,10 @@ import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ButtonAppBar from './AppBar';
+import ButtonAppBar from './appbar.component';
 import { Link } from "react-router-dom";
-import ProductList from './ProductList';
-import {useStyles, fontStyle, rectStyle} from '../styles/side-bar'
+import ProductList from './productlist.component';
+import {useStyles, fontStyle, rectStyle} from '../styles/side-bar.style'
 
 
 export default function ClippedDrawer(props) {

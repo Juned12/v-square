@@ -2,11 +2,11 @@ import React from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle,
         IconButton, Avatar, Grid, withStyles 
 } from '@material-ui/core';
-import ProductCard from './ProductCard';
-import ProductForm from './ProductForm';
+import ProductCard from './product-card.component';
+import ProductForm from './productform.component';
 import { connect } from 'react-redux';
-import ActionBar from './ProductActionBar';
-import {useStyles} from '../styles/product-list'
+import ActionBar from './product-actionbar.component';
+import {useStyles} from '../styles/product-list.style'
 import CloseIcon from '@material-ui/icons/Close';
 
 class ProductList extends React.Component {

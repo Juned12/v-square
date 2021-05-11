@@ -1,11 +1,11 @@
 
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Dashboard } from './components/Dashboard';
+import Dashboard from './pages/Dashboard';
 import { createStore } from 'redux';
 import productReducer from './action/reducer/product-reducer';
 import { Provider } from 'react-redux';
-import ProductPage from './components/ProductPage';
+import ProductPage from './pages/ProductPage';
 
 const store = createStore(productReducer)
 

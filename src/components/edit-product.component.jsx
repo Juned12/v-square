@@ -1,8 +1,8 @@
 import React from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton, makeStyles } from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
-import ProductForm from './ProductForm';
-import ConfirmUpdate from './ConfirmUpdate';
+import ProductForm from './productform.component';
+import ConfirmUpdate from './confirm-update.component';
 import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles({

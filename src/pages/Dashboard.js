@@ -1,7 +1,7 @@
 import React from 'react';
-import ClippedDrawer from './SideBar';
+import ClippedDrawer from '../components/sidebar.component';
 
-export function Dashboard() {
+const Dashboard = () => {
 
     return (
         <div>
@@ -13,3 +13,5 @@ export function Dashboard() {
         
     )
 }
+
+export default Dashboard;

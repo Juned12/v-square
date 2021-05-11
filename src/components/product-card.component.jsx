@@ -8,10 +8,10 @@ import Grid from '@material-ui/core/Grid';
 import Menu from '@material-ui/core/Menu';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { connect } from 'react-redux';
-import { titleFontStyle, priceFontStyle, hsnFontStyle, useStyles } from '../styles/product-card-style'
-import DeleteProduct from './DeleteProduct';
-import UpdateProduct from './EditProduct';
-import ProductInfo from './ProductDetail';
+import { titleFontStyle, priceFontStyle, hsnFontStyle, useStyles } from '../styles/product-card.style'
+import DeleteProduct from './delete-product.component';
+import UpdateProduct from './edit-product.component';
+import ProductInfo from './product-detail.component';
 
 
 const ProductCard = (props) => {

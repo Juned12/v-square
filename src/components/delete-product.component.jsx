@@ -1,6 +1,6 @@
 import React from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
-import ConfirmDelete from './ConfirmDelete';
+import ConfirmDelete from './confirm-delete.component';
 
 
 class DeleteProduct extends React.Component {
