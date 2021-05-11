@@ -62,7 +62,7 @@ const closeInfo = () => {
           alt="Product"
           height="150"
           width="390"
-          image={productData.imageUrl}
+          image={productData.imageUrl || "https://picsum.photos/536/354"}
           title="Product"
           onClick={()=>setShowInfo(true)}
         />

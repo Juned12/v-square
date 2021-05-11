@@ -7,7 +7,7 @@ const initState = [
         "price": 1200,
         "dop": "2017-05-24",
         "category":"one",
-        "quantity":"some",
+        "quantity": 1,
         "imageUrl":"https://picsum.photos/536/354"
     },
    

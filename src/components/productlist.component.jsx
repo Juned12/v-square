@@ -16,7 +16,16 @@ class ProductList extends React.Component {
         this.state = {
             open: false,
             productList: this.props.prodList,
-            searchField: ''
+            searchField: '',
+            productData: {
+                name: '',
+                price: '',
+                description: '',
+                quantity: '',
+                price: '',
+                dop: '',
+                category: ''            
+            }
           };
     }
     componentDidMount() {
@@ -73,7 +82,7 @@ class ProductList extends React.Component {
                 </DialogTitle>
                     <DialogContent>
                         <ProductForm
-                            formData={{}}
+                            formData={this.state.productData}
                             handleSubmit={this.handleSubmit}
                         />
                     </DialogContent>

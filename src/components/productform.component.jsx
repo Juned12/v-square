@@ -1,54 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Button, TextField, InputLabel} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Avatar from '@material-ui/core/Avatar';
 import MenuItem from '@material-ui/core/MenuItem';
 import Badge from '@material-ui/core/Badge';
+import { useStyles, SmallAvatar } from '../styles/productform.style'
 
-
-const SmallAvatar = withStyles((theme) => ({
-  root: {
-    width: 40,
-    height: 40,
-    backgroundColor: "grey"
-    
-  },
-  
-  
-}))(Avatar);
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1
-  },
-  submitButton: {
-    backgroundColor: '#0098DA',
-    width: 200,
-    borderRadius: 20,
-    color: '#FFF'
-  },  
-  myComponent: {
-    justifyContent: 'center',
-    alignItems: 'center',
-      "& .MuiOutlinedInput-root": {
-          borderRadius: '4px',
-          height: '40px',
-          width: '250px',
-          
-      },
-      "& .MuiInputLabel-root": {
-        paddingBottom: '2px'
-      },
-      
-      
-    },
-}));
 
 const ProductForm = (props ) => {
     const classes = useStyles();
     const [formData, setFormData] = useState({});
     const [imageUrl, setImageUrl] = useState('')
+    const [errors, setErrors] = useState({})
     
     const onImageChange = (event) => {
       if (event.target.files && event.target.files[0]) {
@@ -67,15 +30,56 @@ const ProductForm = (props ) => {
 
     const { name, description, quantity, price, dop, category } = props.formData;
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+    const onSubmit = e => {
+      const errors = {}
+      var format = /[!@#$%^&*()+\=\[\]{};':"\\|,.<>\/?]+/;
+      e.preventDefault()
+        Object.entries(formData).forEach((k,v)=>{
+          if(k[0]==='name') {
+            if(format.test(k[1])) {
+              errors[k[0]] = 'Only -, _ are allowed'
+            }
+          }
+          if(k[0]==='dop') {
+            if(k[1] < new Date()) {
+              errors[k[0]] = 'Future Date selected'
+            }
+          }
+          if(k[0]==='price') {
+            if(k[1] < 0) {
+              errors[k[0]] = 'Invalid Price Provided'
+            }
+          }
+          if(k[0]==='quantity') {
+            if(k[1] < 0) {
+              errors[k[0]] = 'Invalid Quantity Provided'
+            }
+          }
+          if(k[0]==='description') {
+            if(k[1].length > 800) {
+              errors[k[0]] = 'Only 800 character allowed'
+            }
+          }
+          if(k[1]==='') {
+            errors[k[0]] = `${k[0]} is required`
+          }
+      })
+    if(Object.keys(errors).length===0) {
+      props.handleSubmit(e,formData)
+    }
+    setErrors(errors)
+  }
+
     return(
       <div className={classes.myComponent}>
-        <form onSubmit={e => props.handleSubmit(e,formData)}>
+        <form onSubmit={e => onSubmit(e)}>
           <Grid container style={{padding:60}}>
             <Grid container direction="column" item xs={1} md={3} lg={4} sm={2} spacing={2} style={{maxWidth:"100%"}}>
               <Grid item xs>
                 <InputLabel htmlFor="name">Name</InputLabel>
                 <TextField
-                  required
+                  error={errors.name? true:false}
+                  helperText={errors.name}
                   id="name"
                   name="name"
                   defaultValue={name || ""}
@@ -87,7 +91,8 @@ const ProductForm = (props ) => {
               <Grid item xs>
                 <InputLabel htmlFor="description">Description</InputLabel>
                 <TextField
-                  required
+                  error={errors.description? true:false}
+                  helperText={errors.description}
                   id="description"
                   name="description"
                   defaultValue={description || ""}
@@ -100,9 +105,11 @@ const ProductForm = (props ) => {
                 <InputLabel htmlFor="quantity">Quantity</InputLabel>
 
                 <TextField
-                  required
+                  error={errors.quantity? true:false}
+                  helperText={errors.quantity}
                   id="quantity"
                   name="quantity"
+                  type="number"
                   defaultValue={quantity || ""}
                   onChange={e => onChange(e)}
                   variant='outlined'
@@ -113,9 +120,11 @@ const ProductForm = (props ) => {
                 <InputLabel htmlFor="price">Price</InputLabel>
 
                 <TextField
-                  required
+                  error={errors.price? true:false}
+                  helperText={errors.price}
                   id="price"
                   name="price"
+                  type="number"
                   defaultValue={price || ""}
                   onChange={e => onChange(e)}
                   variant='outlined'
@@ -126,7 +135,8 @@ const ProductForm = (props ) => {
                 <InputLabel htmlFor="dop">Date of Purchase</InputLabel>
 
                 <TextField
-                  required
+                  error={errors.dop? true:false}
+                  helperText={errors.dop}
                   id="dop"
                   name="dop"
                   type="date"
@@ -139,7 +149,8 @@ const ProductForm = (props ) => {
               <Grid item xs>
                 <InputLabel htmlFor="category">Choose Category</InputLabel>
                 <TextField
-                  required
+                  error={errors.category? true:false}
+                  helperText={errors.category}
                   select
                   id="margin-normal"
                   name="category"
@@ -192,7 +203,6 @@ const ProductForm = (props ) => {
                   }}
                   badgeContent={<SmallAvatar alt="Remy Sharp" src="/assets/camera-outline.svg" ></SmallAvatar>}
                 >
-                  
                   <Avatar style={{ width:200, height:200 }} alt="" src={imageUrl} />
                 </Badge>
                 </label>
