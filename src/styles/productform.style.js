@@ -39,6 +39,9 @@ export const useStyles = makeStyles((theme) => ({
         "& .MuiInputLabel-root": {
           paddingBottom: '2px'
         },  
+        "& MuiFormHelperText-root": {
+          marginTop: 0
+        },
         "& .MuiFormHelperText-contained": {
           marginLeft: 0
       },
