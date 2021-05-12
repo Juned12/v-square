@@ -59,7 +59,7 @@ const ActionBar = props => {
 
     return (
         <div className={classes.paper}>
-            <Grid container className={classes.root}>
+            <Grid container className={classes.root} spacing={1}>
                 <Grid item xs={12} sm={12} md={6} lg={2}>
                     <p style={productCountStyle}>All Product ({props.productCount})</p> 
                 </Grid>

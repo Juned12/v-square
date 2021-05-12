@@ -83,7 +83,7 @@ const ProductForm = (props ) => {
     return(
       <div className={classes.myComponent}>
         <form onSubmit={e => onSubmit(e)}>
-          <Grid container>
+          <Grid container spacing={2}>
             <Grid container direction="column" item xs={12} md={6} lg={4} sm={12} spacing={2} style={{maxWidth:"100%"}}>
               <Grid item xs>
                 <InputLabel htmlFor="name">Name</InputLabel>

@@ -38,6 +38,12 @@ export const useStyles = makeStyles((theme) => ({
         },
         "& .MuiInputLabel-root": {
           paddingBottom: '2px'
-        },    
+        },  
+        "& .MuiFormHelperText-contained": {
+          marginLeft: 0
       },
+      "& p:first-letter": {
+        textTransform:'capitalize',
+      }  
+    }
   }));
