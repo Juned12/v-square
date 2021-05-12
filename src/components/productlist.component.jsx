@@ -67,7 +67,7 @@ class ProductList extends React.Component {
                 <ActionBar
                     handleClick={this.handleClickOpen}
                     onSearchChange={this.onSearchChange}
-                    productCount={productList.length}
+                    productCount={filteredProduct.length}
                     />    
                 <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title" scroll={'body'} >
                 <DialogTitle className={classes.dialogTitle} onClose={this.handleClose}>
