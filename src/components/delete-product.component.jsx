@@ -22,7 +22,6 @@ class DeleteProduct extends React.Component {
 
   }
   render() {
-    const { classes } = this.props;
     return(
       <div>
         <MenuItem onClick={this.confirmDeleteEmployee}>

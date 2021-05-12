@@ -53,9 +53,6 @@ const useStyles = makeStyles((theme) => ({
 
 const ActionBar = props => {
     const classes = useStyles();
-    const searchField = {
-        
-    }
 
     return (
         <div className={classes.paper}>

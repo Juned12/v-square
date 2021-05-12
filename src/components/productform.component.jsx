@@ -34,7 +34,7 @@ const ProductForm = (props ) => {
       onDescriptionChange(e)
     }
     const onDescriptionChange = e => {
-      if(e.target.value.length>10) {
+      if(e.target.value.length>800) {
         setErrors({'description':'Only 800 Character allowed'})
       } else {
         setErrors({})
@@ -128,7 +128,6 @@ const ProductForm = (props ) => {
               </Grid>
               <Grid item xs>
                 <InputLabel htmlFor="price">Price</InputLabel>
-
                 <TextField
                   error={errors.price? true:false}
                   helperText={errors.price}

@@ -22,7 +22,6 @@ class ProductList extends React.Component {
                 price: '',
                 description: '',
                 quantity: '',
-                price: '',
                 dop: '',
                 category: ''            
             }

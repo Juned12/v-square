@@ -26,7 +26,7 @@ export default function ClippedDrawer(props) {
     setOpen(false);
   };
 
-  const list =( <List>
+  const list = ( <List>
                 <Link to="/" style={{ textDecoration: 'none' }}>
                   <ListItem button key="dashboard" style={props.page==='dashboard'?{'backgroundColor':'#F7FCFF'}: {}}>
                     {props.page === 'dashboard' && <img src="/assets/rectangle.svg" alt="avtar" style={rectStyle}/> }
